@@ -13,7 +13,6 @@ __pycache__
 *db\.sqlite3
 managed_vms/django_tutorial/static/*
 **/migrations/*
-lib
 testing/test-env-local.sh
 testing/resources/test-env.sh
 testing/resources/service-account.json

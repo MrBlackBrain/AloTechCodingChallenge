@@ -2,6 +2,10 @@
 
 ## Extracting Data from BigQuery and Data Visualization
 
+You can find the live site at <https://alo-tech-coding-challenge.vercel.app/>
+
+## Challenge
+
 You are required to log into the Google Cloud Console, query a dataset from BigQuery
 (`bigquery-public-data.bbc_news.fulltext`) and create a function in Google Cloud
 Functions using Python. The function should return the received data in JSON format (Fields
@@ -22,7 +26,7 @@ All project codes, API and application links should be added to a new GitHub rep
   - [x] Inputs are Category and Title
   - [x] Limit to 50
   - [x] Return in JSON Format
-- [ ] FastAPI or Flask Backend
+- [ ] ~~FastAPI or Flask Backend~~
   - [ ] Cloud Pub/Sub
   - [ ] Invoke the Cloud Function async
   - [ ] Process the response

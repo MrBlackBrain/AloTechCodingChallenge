@@ -4,13 +4,18 @@ from cloudevents.http import CloudEvent
 import functions_framework
 from flask import jsonify
 import json
+from google.cloud import pubsub_v1
 
 # Initialize the BigQuery client
 client = bigquery.Client()
+publisher = pubsub_v1.PublisherClient()
+
+PROJECT_ID = "intrepid-kiln-415822"
+TOPIC_ID = "bbc_news"
 
 # Triggered from a message on a Cloud Pub/Sub topic.
 @functions_framework.cloud_event
-def subscribe(cloud_event: CloudEvent) -> None:
+def publish(cloud_event: CloudEvent) -> None:
     # Decode the data from Pub/Sub
     data_str = base64.b64decode(cloud_event.data["message"]["data"]).decode()
     data = json.loads(data_str)
@@ -43,7 +48,21 @@ def subscribe(cloud_event: CloudEvent) -> None:
             ]
         ),
     )
-    results = [{"title": row.title, "category": row.category} for row in query_job]
 
+    results = [{"title": row.title, "category": row.category} for row in query_job]
     print(results)
-    return jsonify(results)
+    
+    message_json = json.dumps(results)
+    message_bytes = message_json.encode("utf-8")
+
+    # References an existing topic
+    topic_path = publisher.topic_path(PROJECT_ID, TOPIC_ID)
+
+    # Publishes a message
+    try:
+        publish_future = publisher.publish(topic_path, data=message_bytes)
+        publish_future.result()  # Verify the publish succeeded
+        return "Message published."
+    except Exception as e:
+        print(e)
+        return (e, 500)

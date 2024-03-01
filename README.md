@@ -17,20 +17,20 @@ All project codes, API and application links should be added to a new GitHub rep
 
 ## ToDo
 
-- [ ] Create Google Cloud Function
-  - [ ] Query through BBC dataset
-  - [ ] Inputs are Category and Title
-  - [ ] Limit to 50
-  - [ ] Return in JSON Format
+- [x] Create Google Cloud Function
+  - [x] Query through BBC dataset
+  - [x] Inputs are Category and Title
+  - [x] Limit to 50
+  - [x] Return in JSON Format
 - [ ] FastAPI or Flask Backend
   - [ ] Cloud Pub/Sub
   - [ ] Invoke the Cloud Function async
   - [ ] Process the response
     - [ ] Add ID sequential
     - [ ] Add Count random
-- [ ] Frontend
-  - [ ] React Table
-  - [ ] Grapghs
+- [x] Frontend
+  - [x] React Table
+  - [x] Grapghs
 
 ## Folder Structure
 
@@ -40,11 +40,6 @@ project-root/
 │ ├── venv # Environment
 │ ├── main.py # Python code for Cloud Function
 │ └── requirements.txt # Python package dependencies
-│
-├── web_application/
-│ ├── app.py # Python code for FastAPI or Flask web application
-│ └── requirements.txt # Python package dependencies
-│
 ├── frontend/
 │ ├── public/ # Public assets (HTML, CSS, etc.)
 │ ├── src/ # Frontend source code
@@ -57,4 +52,3 @@ project-root/
 │
 ├── .gitignore # Git ignore file
 ├── README.md # Project README
-└── requirements.txt # Top-level Python package dependencies

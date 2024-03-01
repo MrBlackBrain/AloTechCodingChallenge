@@ -31,3 +31,30 @@ All project codes, API and application links should be added to a new GitHub rep
 - [ ] Frontend
   - [ ] React Table
   - [ ] Grapghs
+
+## Folder Structure
+
+project-root/
+│
+├── cloud_function/
+│ ├── venv # Environment
+│ ├── main.py # Python code for Cloud Function
+│ └── requirements.txt # Python package dependencies
+│
+├── web_application/
+│ ├── app.py # Python code for FastAPI or Flask web application
+│ └── requirements.txt # Python package dependencies
+│
+├── frontend/
+│ ├── public/ # Public assets (HTML, CSS, etc.)
+│ ├── src/ # Frontend source code
+│ │ ├── components/ # React components
+│ │ ├── pages/ # React pages
+│ │ └── App.js # Main React component
+│ │
+│ ├── package.json # Frontend package configuration
+│ └── README.md # Frontend README
+│
+├── .gitignore # Git ignore file
+├── README.md # Project README
+└── requirements.txt # Top-level Python package dependencies

@@ -1,4 +1,5 @@
 import functions_framework
+import random
 
 @functions_framework.http
 def hello_http(request):
@@ -29,6 +30,19 @@ import json
 
 @functions_framework.http
 def fetch_news_data(request):
+  # Set CORS headers for the preflight request
+  if request.method == "OPTIONS":
+      # Allows GET requests from any origin with the Content-Type
+      # header and caches preflight response for an 3600s
+      headers = {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Max-Age": "3600",
+      }
+
+      return ("", 204, headers)
+
   # Parse the request body
   request_json = request.get_json(silent=True)
   request_args = request.args
@@ -77,6 +91,10 @@ def fetch_news_data(request):
 
   processed_data = []
   for row in results:
-    processed_data.append({"Category": row["category"], "Title": row["title"]})
+    id = len(processed_data) + 1
+    count = random.randint(1, 100)
+    processed_data.append({"ID": id, "Category": row["category"], "Title": row["title"], "Count": count})
+    
+  headers = {"Access-Control-Allow-Origin": "*"}
 
-  return json.dumps(processed_data)
+  return (json.dumps(processed_data), 200, headers)
